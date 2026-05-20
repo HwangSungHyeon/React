@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function ScorePage(){
+function ScorePage({students}){
     const [studentId, setStudentId] = useState("");
     const [pythonScore, setPythonScore] = useState("");
     const [numpyScore, setNumpyScore] = useState("");
@@ -9,17 +9,9 @@ function ScorePage(){
     const [projectScore, setProjectScore] = useState("");
 
     // 성적 목록 state
-    const [students, setStudents] = useState([]);
     const [scores, setScores] = useState([]);
 
     const API_URL = "http://localhost:8000";
-
-    // 등록된 학생 전체 조회
-    const getStudents = async () => {
-        const response = await fetch(`${API_URL}/students`);
-        const data = await response.json();
-        setStudents(data);
-    };
 
     // 등록된 성적 목록 조회
     const getScores = async () => {
@@ -58,7 +50,6 @@ function ScorePage(){
     };
 
     useEffect( () => {
-        getStudents();
         getScores();
     }, []);
 
@@ -182,21 +173,7 @@ function ScorePage(){
                                 <button type="button">수정</button>
                             </td>
                         </tr>
-                    ))}   
-                    <tr>
-                        <td>2</td>
-                        <td>이영희</td>
-                        <td>1반</td>
-                        <td>B팀</td>
-                        <td>80</td>
-                        <td>82</td>
-                        <td>78</td>
-                        <td>85</td>
-                        <td>90</td>
-                        <td>83.00</td>
-                    </tr>
-                    
-                    
+                    ))}
 
                 </tbody>
 

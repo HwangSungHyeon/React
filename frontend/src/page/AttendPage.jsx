@@ -1,25 +1,16 @@
 import { useEffect, useState } from "react";
 
-function AttendPage(){
+function AttendPage({students}){
     const [studentId, setStudentId] = useState("");
     const [attend, setAttend] = useState("");
     const [late, setLate] = useState("");
     const [absent, setAbsent] = useState("");
     const [earlyLeave, setEarlyLeave] = useState("");
 
-    // 학생 목록 state
-    const [students, setStudents] = useState([]);
     // 출석 목록 state
     const [attends, setAttends] = useState([]);
 
     const API_URL = "http://localhost:8000";
-
-    // 등록된 학생 전체 조회
-    const getStudents = async () => {
-        const response = await fetch(`${API_URL}/students`);
-        const data = await response.json();
-        setStudents(data);
-    };
 
     // 등록된 출석 목록 조회
     const getAttends = async () => {
@@ -56,7 +47,6 @@ function AttendPage(){
     };
 
     useEffect( () => {
-        getStudents();
         getAttends();
     }, []);
 
